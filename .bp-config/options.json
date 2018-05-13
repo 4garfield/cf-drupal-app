@@ -1,0 +1,7 @@
+{
+  "PHP_VERSION": "{PHP_72_LATEST}",
+  "PHP_MODULES": [ "fpm", "cli" ],
+  "PHP_EXTENSIONS": [ "bz2", "curl", "date", "dom", "gd", "json", "ldap", "mbstring", "mysqli", "mysqlnd", "opcache", "openssl", "pdo", "pdo_mysql", "sockets", "xml", "xsl", "zip", "zlib" ],
+  "WEBDIR": "web",
+  "COMPOSER_VERSION": "latest"
+}

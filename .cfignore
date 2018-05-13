@@ -1,0 +1,6 @@
+# except files from upload
+.DS_Store
+.git
+.gitignore
+manifest.yml
+

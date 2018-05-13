@@ -1,0 +1,9 @@
+---
+applications:
+- name: cf-drupal-app
+  buildpack: https://github.com/cloudfoundry/php-buildpack.git
+  disk_quota: 1G
+  memory: 512M
+  instances: 1
+  services:
+    - mysql
