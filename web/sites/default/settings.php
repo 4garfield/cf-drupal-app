@@ -788,14 +788,19 @@ $settings['entity_update_batch_size'] = 50;
 $config_directories['sync'] = '../config/sync';
 
 /*
- * Read MySQL service properties from _ENV['VCAP_SERVICES']
+ * Read PCF service properties from _ENV['VCAP_SERVICES']
  */
 $service_blob = json_decode($_ENV['VCAP_SERVICES'], true);
+
 $mysql_service = array();
+$s3_service = array();
 foreach($service_blob as $service_provider => $service_list) {
     // looks for 'cleardb' or 'p-mysql' service
     if ($service_provider === 'cleardb' || $service_provider === 'p-mysql') {
       $mysql_service = $service_list[0]["credentials"];
+    }
+    if ($service_provider === 'user-provided') {
+      $s3_service = $service_list[0]["credentials"];
     }
 }
 
@@ -809,4 +814,10 @@ $databases['default']['default'] = array (
     'driver' => 'mysql',
 );
 
+$settings['s3fs.access_key'] = $s3_service["access_key"];
+$settings['s3fs.secret_key'] = $s3_service["secret_key"];
+$settings['s3fs.use_s3_for_public'] = TRUE;
+$settings['s3fs.use_s3_for_private'] = TRUE;
+
+// installed profile
 $settings['install_profile'] = 'standard';
